@@ -26,13 +26,13 @@
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="bg-black text-white font-sans overflow-x-hidden">
-    <div id="popup-lebaran" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm px-6 hidden transition-opacity duration-300">
+   <div id="popup-lebaran" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm px-6 hidden transition-opacity duration-300">
         
-        <div class="relative w-full max-w-sm sm:max-w-md scale-65 opacity-0 transition-all duration-500" id="popup-content">
+        <div class="relative w-full max-w-[300px] scale-95 opacity-0 transition-all duration-500" id="popup-content">
             
             <button onclick="closePopup()" class="absolute -top-10 right-0 text-white text-4xl font-oswald hover:text-orange-400 transition-colors duration-300">&times;</button>
             
-            <img src="https://gaduh.my.id/gaduhHappyied.png" alt="Ucapan Lebaran Gaduh" class="w-80% h-80% rounded-xl shadow-[0_0_40px_rgba(255,100,0,0.15)] border border-white/10">
+            <img src="https://gaduh.my.id/gaduhHappyied.png" alt="Ucapan Lebaran Gaduh" class="w-full h-auto rounded-xl shadow-[0_0_40px_rgba(255,100,0,0.15)] border border-white/10">
             
         </div>
     </div>
@@ -42,15 +42,13 @@
             const popup = document.getElementById("popup-lebaran");
             const content = document.getElementById("popup-content");
             
-            // Cek apakah pengunjung udah pernah nutup pop-up ini di sesi sekarang
             if (!sessionStorage.getItem("lebaranDitutup")) {
-                // Munculin pop-up (hapus class hidden)
                 popup.classList.remove("hidden");
                 
-                // Bikin animasi transisi mulus
                 setTimeout(() => {
-                    content.classList.remove("scale-55", "opacity-0");
-                    content.classList.add("scale-60", "opacity-100");
+                    // Animasi scale dibalikin ke default (95 ke 100) biar mulus nge-zoomnya
+                    content.classList.remove("scale-95", "opacity-0");
+                    content.classList.add("scale-100", "opacity-100");
                 }, 50);
             }
         });
@@ -59,15 +57,13 @@
             const popup = document.getElementById("popup-lebaran");
             const content = document.getElementById("popup-content");
             
-            // Animasi ngilang
-            content.classList.remove("scale-60", "opacity-100");
-            content.classList.add("scale-55", "opacity-0");
+            content.classList.remove("scale-100", "opacity-100");
+            content.classList.add("scale-95", "opacity-0");
             
             setTimeout(() => {
                 popup.classList.add("hidden");
-            }, 300); // Nunggu animasi beres baru di-hide
+            }, 300); 
             
-            // Simpan memori di browser biar ga muncul lagi pas di-refresh
             sessionStorage.setItem("lebaranDitutup", "true");
         }
     </script>
